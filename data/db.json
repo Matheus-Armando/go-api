@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "doejohn@gmail.com",
+      "password": "securepass456",
+      "birthDate": "1985-05-15"
+    },
+    {
+      "id": 2,
+      "name": "Makise Kurisu",
+      "email": "urisu@gmail.com",
+      "password": "password123",
+      "birthDate": "1985-05-15"
+    },
+    {
+      "id": 3,
+      "name": "Pitapigas",
+      "email": "pitapigas@outlook.com",
+      "password": "mypassword789",
+      "birthDate": "1998-06-14"
+    },
+    {
+      "id": 4,
+      "name": "Monkey D. Luffy",
+      "email": "meatluffy@gmail.com",
+      "password": "gomugomu123",
+      "birthDate": "1997-12-05"
+    },
+    {
+      "id": 5,
+      "name": "Zoro Roronoa",
+      "email": "swordzoro@gmail.com",
+      "password": "daisensenkai",
+      "birthDate": "1998-11-11"
+    },
+    {
+      "id": 6,
+      "name": "Edward Elric",
+      "email": "elric@gmail.com",
+      "password": "equivalentExchange",
+      "birthDate": "1999-07-20"
+    }
+  ]
+}
