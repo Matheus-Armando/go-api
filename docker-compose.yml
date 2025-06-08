@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"  
+      - "3000:3000"  
+    environment:
+      - PORT=8080
+      - JSON_SERVER_URL=http://localhost:3000
+    volumes:
+      - ./data:/app/data
