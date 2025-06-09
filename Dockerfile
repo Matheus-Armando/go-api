@@ -2,14 +2,20 @@ FROM golang:1.21-alpine AS builder
 
 WORKDIR /app
 
-# Copy go mod and sum files
-COPY go.mod ./
-
-# Download dependencies
-RUN go mod download
-
 # Copy source code
 COPY . .
+
+# If go.mod exists, get dependencies, otherwise initialize
+RUN if [ -f go.mod ]; then \
+  go get github.com/gin-gonic/gin && \
+  go get github.com/joho/godotenv && \
+  go mod tidy; \
+  else \
+  go mod init github.com/Matheus-Armando/go-api && \
+  go get github.com/gin-gonic/gin && \
+  go get github.com/joho/godotenv && \
+  go mod tidy; \
+  fi
 
 # Build the application
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go-api .
