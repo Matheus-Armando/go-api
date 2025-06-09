@@ -1,8 +1,8 @@
 package handlers
 
 import (
+	  "fmt"
     "net/http"
-    "strconv"
 
     "github.com/Matheus-Armando/go-api/api/clients"
     "github.com/Matheus-Armando/go-api/api/models"
@@ -36,21 +36,20 @@ func (h *UserHandler) GetUsers(c *gin.Context) {
 // GetUserByID handles the GET /users/:id request
 func (h *UserHandler) GetUserByID(c *gin.Context) {
     idParam := c.Param("id")
-    id, err := strconv.Atoi(idParam)
-    if err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "invalid user ID"})
-        return
-    }
-
+    
+    // Get all users
     var users []models.User
-    err = h.jsonClient.Get("users", &users)
+    err := h.jsonClient.Get("users", &users)
     if err != nil {
         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
         return
     }
 
+    // Convert for comparison
     for _, user := range users {
-        if user.ID == id {
+        // Convert both to string for comparison
+        userIDStr := fmt.Sprintf("%v", user.ID)
+        if userIDStr == idParam {
             c.JSON(http.StatusOK, user)
             return
         }
