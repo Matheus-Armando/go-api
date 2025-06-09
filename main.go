@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 	"os"
+
+	"github.com/Matheus-Armando/go-api/api/routes"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -13,7 +14,7 @@ import (
 func main() {
 	// env variables
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("Error loading .env file")
 	}
 
 	port := os.Getenv("PORT")
@@ -23,11 +24,7 @@ func main() {
 
 	router := gin.Default()
 
-	router.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"status": "ok"})
-	})
-
-	//TODO: add other rotues here
+	routes.SetupRoutes(router)
 
 	// Start the server
 	fmt.Printf("Server is running on port %s\n", port)
